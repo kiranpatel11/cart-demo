@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hazelcast
+  namespace: com-att-idp
+  labels:
+    app: hazelcast
+    version: 1.0.0
+spec:
+  selector:
+      matchLabels:
+        app: hazelcast
+        version: 1.0.0
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hazelcast
+        version: 1.0.0
+    spec:
+      containers:
+        - name: hazelcast
+          image: com.att.idp/hazelcast:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5701

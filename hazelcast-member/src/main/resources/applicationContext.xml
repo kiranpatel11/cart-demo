@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:hz="http://www.hazelcast.com/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+              http://www.hazelcast.com/schema/spring http://www.hazelcast.com/schema/spring/hazelcast-spring.xsd">
+
+<context:annotation-config />
+
+<hz:hazelcast id="instance">
+	<hz:config>
+	<hz:network port="5701">
+    <hz:join>
+      <hz:multicast enabled="false"/>
+      <hz:tcp-ip enabled="true">
+        	<hz:member>127.0.0.1</hz:member>
+      </hz:tcp-ip>
+    </hz:join>
+ </hz:network>
+  
+    <hz:map name="*Store" >
+		 <hz:map-store enabled="true" implementation="cassandraMapStore" write-delay-seconds="0"/>		 	
+  	</hz:map> 
+  	
+  	<hz:serialization>
+   		<hz:serializers>
+	   		<hz:global-serializer class-name="com.example.hazelcastmember.mapstore.ByteBufferCacheSerializer"/>
+   		</hz:serializers>
+   	</hz:serialization> 
+   	
+   	</hz:config>   				
+</hz:hazelcast>
+</beans>

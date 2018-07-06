@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.9.xsd"
+           xmlns="http://www.hazelcast.com/schema/config"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <network>
+    <join>
+      <!-- For trainings everyone should create his/her own cluster, therefore
+      multicast is disabled and other nodes are only searched for on localhost -->
+      <multicast enabled="false"/>
+      <tcp-ip enabled="true">
+        <member-list>
+        	<member>127.0.0.1</member>
+        </member-list>
+      </tcp-ip>
+    </join>
+  </network>
+  
+  <map name="*Store">
+		 <map-store enabled="true">
+            <class-name>com.example.hazelcastmember.mapstore.CassandraMapStore</class-name>
+        </map-store>  
+  </map>
+</hazelcast>

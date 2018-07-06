@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: "cart-config"
+  namespace: "com-att-idp"
+data:
+  CASSANDRA_CONNECT_POINTS: "135.68.207.111,135.68.207.112,135.68.207.110"
+  CASSANDRA_PORT: "7011"
+  CASSANDRA_USERNAME: "platformschema"
+  CASSANDRA_PASSWORD: "platf0rmsch3ma"
+  HAZELCAST_MEMBER_1: "135.198.127.25"
+  HAZELCAST_MEMBER_2: "135.198.127.32"
+  HAZELCAST_MEMBER_3: "135.198.127.67"
+  HAZELCAST_PORT: "9600"
