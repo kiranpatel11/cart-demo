@@ -1,13 +1,12 @@
 package com.example.cart.model;
 
-import java.io.Serializable;
-
 public class CartItem {
 	
 	private ProductOffering productOffering;
 	
 	private int quantity;
 	
+	@SuppressWarnings("unused")
 	private CartItem() {
 		super();
 	}

@@ -28,7 +28,7 @@
   	
   	<hz:serialization>
    		<hz:serializers>
-	   		<hz:global-serializer class-name="com.example.hazelcastmember.mapstore.ByteBufferCacheSerializer"/>
+	   		<hz:global-serializer override-java-serialization="true" implementation="dataWrapperSerializer" />
    		</hz:serializers>
    	</hz:serialization> 
    	

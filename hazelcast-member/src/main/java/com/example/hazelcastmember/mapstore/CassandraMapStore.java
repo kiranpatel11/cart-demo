@@ -13,9 +13,7 @@ import com.hazelcast.core.MapLoaderLifecycleSupport;
 import com.hazelcast.core.MapStore;
 
 @Component
-public class CassandraMapStore implements MapStore<String, ByteBuffer>, MapLoaderLifecycleSupport{
-	
-	//private static CassandraRepository repo = cassandraRepository;
+class CassandraMapStore implements MapStore<String, DataWrapper>, MapLoaderLifecycleSupport{
 	
 	private CassandraRepository cassandraRepository;
 	
@@ -27,16 +25,15 @@ public class CassandraMapStore implements MapStore<String, ByteBuffer>, MapLoade
 	}
 	
 	@Override
-	public ByteBuffer load(String key) {
-		
+	public DataWrapper load(String key) {
 		System.out.println("load " + key);
 		return cassandraRepository.findById(formKey(key))
-									.map(v -> v.getValue())
-									.orElse(null);
+					.map(v -> new DataWrapper(v.getClazz(), v.getValue().array()))
+					.orElse(null);
 	}
 
 	@Override
-	public Map<String, ByteBuffer> loadAll(Collection<String> arg0) {
+	public Map<String, DataWrapper> loadAll(Collection<String> arg0) {
 		return null;
 	}
 
@@ -56,19 +53,18 @@ public class CassandraMapStore implements MapStore<String, ByteBuffer>, MapLoade
 	}
 
 	@Override
-	public void store(String key, ByteBuffer value) {
+	public void store(String key, DataWrapper value) {
 		System.out.println("store " + key);
-		cassandraRepository.save(new PersistenceEntity(formKey(key), value));
+		cassandraRepository.save(new PersistenceEntity(formKey(key), value.getClazz(), ByteBuffer.wrap(value.getData())));
 	}
 
 	@Override
-	public void storeAll(Map<String, ByteBuffer> arg0) {
+	public void storeAll(Map<String, DataWrapper> arg0) {
 		
 	}
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 		
 	}
 

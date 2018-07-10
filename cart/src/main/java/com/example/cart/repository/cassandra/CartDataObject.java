@@ -1,10 +1,7 @@
-package com.example.cart.repository;
-
-import java.io.Serializable;
+package com.example.cart.repository.cassandra;
 
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import com.example.cart.model.Cart;
@@ -21,6 +18,7 @@ class CartDataObject {
 	/**
 	 * default constructor, used for (de)serialization purpose
 	 */
+	@SuppressWarnings("unused")
 	private CartDataObject() {
 		super();
 	}

@@ -1,9 +1,7 @@
-package com.example.cart.repository;
+package com.example.cart.repository.cassandra;
 
 import java.util.Optional;
 
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 interface CartCassandraRepository extends CrudRepository<CartDataObject, String> {
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	CartDataObject save(CartDataObject cart);
 	

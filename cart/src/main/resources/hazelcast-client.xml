@@ -44,7 +44,7 @@
          
    	<serialization>
    		<serializers>
-   			<serializer class-name="com.example.cart.repository.cache.CartCacheSerializer" type-class="com.example.cart.model.Cart"/>
+   			<global-serializer override-java-serialization="true">com.example.cart.repository.cache.GenericSerializer</global-serializer>
    		</serializers>
    	</serialization> 
 </hazelcast-client>

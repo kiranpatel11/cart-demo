@@ -7,22 +7,33 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 @Table("cache_persistence")
-public class PersistenceEntity {
+class PersistenceEntity {
 
 	@PrimaryKey("key")
 	private String key;
 	
+	/**
+	 * FQCN to be used for deserialization of this.value.
+	 */
+	@Column("class_name")
+	private String clazz;
+	
 	@Column("value")
 	private ByteBuffer value;
 
-	public PersistenceEntity(String key, ByteBuffer value) {
+	public PersistenceEntity(String key, String clazz, ByteBuffer value) {
 		super();
 		this.key = key;
+		this.clazz = clazz;
 		this.value = value;
 	}
-
+	
 	public String getKey() {
 		return key;
+	}
+	
+	public String getClazz() {
+		return clazz;
 	}
 
 	public ByteBuffer getValue() {

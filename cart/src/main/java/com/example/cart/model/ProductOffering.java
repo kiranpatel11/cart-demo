@@ -1,14 +1,16 @@
 package com.example.cart.model;
 
-import java.io.Serializable;
-
 public class ProductOffering {
 	
+
+
 	private String sku;
 	
 	private String Category;
 	
 	private String type;
+	
+	private double price;
 
 	public String getSku() {
 		return sku;
@@ -32,6 +34,13 @@ public class ProductOffering {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 }

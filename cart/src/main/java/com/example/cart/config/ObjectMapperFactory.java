@@ -9,11 +9,11 @@ public class ObjectMapperFactory {
 	private ObjectMapperFactory() {		
 	}
 	
-	public static ObjectMapper smileMapper() {
+	/*public static ObjectMapper smileMapper() {
 	    return new ObjectMapper(new SmileFactory());
-	}
+	}*/
 	
 	public static ObjectMapper objectMapper() {
-	    return new ObjectMapper();
+	    return new ObjectMapper(new SmileFactory());
 	}
 }

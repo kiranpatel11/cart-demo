@@ -1,8 +1,6 @@
 package com.example.cart.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 /**
@@ -17,6 +15,7 @@ public class Cart {
 
 	private List<CartItem> items = new ArrayList<>();
 	
+	@SuppressWarnings("unused")
 	private Cart() {
 		super();
 	}
@@ -29,14 +28,11 @@ public class Cart {
 		return id;
 	}
 
-	private void setId(String id) {
-		this.id = id;
-	}
-
 	public List<CartItem> getItems() {
 		return Collections.unmodifiableList(items);
 	}
 
+	@SuppressWarnings("unused")
 	private void setItems(List<CartItem> items) {
 		this.items = items;
 	}	

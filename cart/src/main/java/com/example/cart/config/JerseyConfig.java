@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import com.example.cart.resource.CartResource;
-import com.example.cart.resource.CartResourceImpl;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -32,7 +31,7 @@ public class JerseyConfig extends ResourceConfig {
 	/*Please do not edit or remove the LOGGER_NAME name declaration as it is critical
 	*to have this identifier for server side logging
 	*/	
-	public final static String LOGGER_NAME="com.att.idp.logging.server.JerseyLogging";
+	public final static String LOGGER_NAME="com.example.cart.logging.server.JerseyLogging";
 	private static final Logger log = Logger.getLogger(LOGGER_NAME);
 	
     /**
@@ -58,8 +57,7 @@ public class JerseyConfig extends ResourceConfig {
      * 
      */
     public JerseyConfig() {
-		//packages(CartResource.class.getPackage().toString());
-		register(CartResourceImpl.class);
+		register(CartResource.class);
         property(ServletProperties.FILTER_FORWARD_ON_404, true);
         register(new LoggingFeature(log));
     }
